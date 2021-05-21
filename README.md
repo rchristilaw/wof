@@ -1,57 +1,14 @@
-# Pendumilo (Rado de Fortuno)
+Forked from tboronczyk/pendumilo.
 
-KIO ESTAS ĈI-TIU FEKAĴO!?
-
-Nia loka esperanta klubo renkontiĝas enrete pro KOVIM-19, do por amuza kunsida
-ludo, mi programis ĉi tiun version de Pendumulo (fakte "Rado de Fortuno",
-usona ludspektaklo). Ĉar mi planas uzi la programon nur kelkfoje, la fontkodo
-estas malneta kaj plena kun cimoj; mi ne havas planon por plibonigi ĝin.
-
-La ludestro malfermas la ap-paĝon en retumilo, prezentas sian ekranon, kaj
-respondecas premi la klavojn por regi la ludon.
-
-  * `/` - iri al la sekva enigmo
-  * spacoklavo - rotaciigi la radon aŭ forigi la radon
-  * `X` - montri ĉiujn literojn (solvi la enigmon)
-  * `A`...`Z` - montri elektitan literon
-
-La ludestro ankaŭ kalkulu monsumojn/poentojn - por tio, uzu paperon kaj
-plumon :)
-
-Jam enhavas 16 enigmojn en la `puzzles` dosierujo. Se vi volas krei novajn,
-faru fonan bildon de `puzzle.psd` kaj aldonu la poziciojn de literoj en
-`puzzles.json`.
-
-Enrete per GitHub Pages: [tboronczyk.github.io/pendumilo/src](https://tboronczyk.github.io/pendumilo/src)
-
-Por servi la kodon loke, instalu [Docker](https://docker.com/) kaj rulu
-`docker-compose up`.
-
-
-# Hangman (Wheel of Fortune)
-
-WHAT IS THIS CRAP!?
-
-Our local Esperanto club is meet online because of COVID-19, and for a fun
-meeting activity I tossed together this version of Hangman ("Wheel of Fortune").
-I’m only planning on using the program once or twice, so the source code is
-messy and full of bugs; there are no plans to improve it.
-
-To play, the emcee opens the app in a browser, shares their screen, and
-drives gameplay by pressing various keyboard buttons.
+# Wheel of Fortune
+For a friends' virtual baby shower, decided to do a Baby themed wheel of fortune. After exhausting other options of using powerpoint templates I stumbled across https://github.com/tboronczyk/pendumilo and decided to build off of his great start. My efforts have been to make it more dynamic and remove the need for a hardcoded background image to represent the squares.
 
   * `/` - advance to the next puzzle
   * spacebar - spin the wheel or dismiss the wheel
-  * `X` - reveal all letters (solve the puzzle)
+  * `\` - reveal all letters (solve the puzzle)
   * `A`...`Z` - select/show a letter
-
-The emcee is also responsible for keeping score (using paper and pencil) :)
-
-There are 16 puzzles in the `puzzles` folder. If you want to create new puzzles,
-make a base image using `puzzle.psd` and add the letter positions to
-`puzzles.json`.
-
-Online via GitHub Pages: [tboronczyk.github.io/pendumilo/src](https://tboronczyk.github.io/pendumilo/src)
 
 To serve the code locally, install [Docker](https://docker.com) and execute
 `docker-composer up`.
+
+Alternatively for development you run `npx http-server` inside the src/ folder.
