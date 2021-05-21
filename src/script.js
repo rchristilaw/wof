@@ -10,6 +10,11 @@
     const sfxSolve = new Audio('sfx/solve.mp3');
     const sfxWheel = new Audio('sfx/wheel.mp3');
 
+    const ROW_HEIGHT = 70;
+    const COLUMN_WIDTH = 57.5;
+
+    const TOP_ROW_Y = 210;
+    const LEFT_X = 360;
     // graphics
     const imgPuzzle = new Image();
     imgPuzzle.src = 'img/splash.jpg';
@@ -50,10 +55,27 @@
 
     function drawPuzzle() {
         ctx.drawImage(imgPuzzle, 0, 0);
-        ctx.font = 'bold 50px sans-serif';
-        solvedLetters.forEach((letter) => {
-            ctx.fillText(letter.chr, letter.x, letter.y);
+
+        puzzles[currentRound].letters.forEach((letter) => {
+            ctx.fillStyle = "white";
+            const x = LEFT_X + COLUMN_WIDTH * (letter.x - 1);
+            const y = TOP_ROW_Y + ROW_HEIGHT * (letter.y - 1);
+            ctx.fillRect(x, y, 48, 55);
         });
+
+        // ctx.fillRect(560, 500, 200, 30);
+
+        ctx.font = 'bold 50px sans-serif';
+        ctx.fillStyle = "black";
+        solvedLetters.forEach((letter) => {
+            const x = LEFT_X + COLUMN_WIDTH * (letter.x - 1);
+            const y = TOP_ROW_Y + ROW_HEIGHT * (letter.y - 1);
+            ctx.fillText(letter.chr, x + 6, y + 45);
+        });
+
+        ctx.font = '20px sans-serif';
+        ctx.fillStyle = "white";
+        ctx.fillText(puzzles[currentRound].category, 600, 560);
     };
 
     function drawWheel() {
@@ -85,16 +107,15 @@
     }
 
     function nextPuzzle() {
-         currentRound++;
-         if (currentRound > puzzles.length) {
-             playSound(sfxNoLetter);
-             return;
-         }
+        currentRound++;
+        if (currentRound > puzzles.length) {
+            playSound(sfxNoLetter);
+            return;
+        }
 
-         imgPuzzle.src = 'puzzles/' + puzzles[currentRound].background;
-         solvedLetters.splice(0, solvedLetters.length);
-         drawPuzzle();
-         playSound(sfxReveal);
+        solvedLetters.splice(0, solvedLetters.length);
+        drawPuzzle();
+        playSound(sfxReveal);
     }
 
     function spinWheel() {
@@ -109,10 +130,10 @@
     }
 
     function solvePuzzle() {
-       solvedLetters.splice(0, solvedLetters.length);
-       solvedLetters.push(...puzzles[currentRound].letters);
-       drawPuzzle();
-       playSound(sfxSolve);
+        solvedLetters.splice(0, solvedLetters.length);
+        solvedLetters.push(...puzzles[currentRound].letters);
+        drawPuzzle();
+        playSound(sfxSolve);
     }
 
     window.addEventListener('keypress', (evt) => {
@@ -129,7 +150,7 @@
 
         const c = evt.key.toUpperCase();
 
-        if (c === 'X') {
+        if (c === '\\') {
             solvePuzzle();
             return;
         }
@@ -159,7 +180,7 @@
             }
         });
 
-        if ('ABCĈDEFGĜHĤIJKLMNOPRSŜSTUŬVZ'.indexOf(c) > -1 && lettersShown === 0) {
+        if ('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(c) > -1 && lettersShown === 0) {
             playSound(sfxNoLetter);
         }
     });
